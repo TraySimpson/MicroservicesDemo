@@ -4,7 +4,7 @@
 version: "3.9"
 
 services:
-  postgres:
+  order-service-db:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
@@ -16,14 +16,14 @@ services:
 
   order-service:
     build:
-      context: .
+      context: ./src/order-service
     environment:
       DB_SCHEMA: postgres
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: postgres
     depends_on:
-      - postgres
+      - order-service-db
     ports:
       - '3000:3000'
 
