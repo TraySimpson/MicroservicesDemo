@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Why am I so lazy?
-docker compose up -d

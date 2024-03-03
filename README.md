@@ -1,9 +1,10 @@
 This is a simple project created to learn about microservices.
 
 ### Quick Reference
-- `./start` - easy alias script for docker compose
+- `docker compose up -d`
 - Then go to [http://localhost:3000/](http://localhost:3000/)
 - DB example: [http://localhost:3000/orders/all](http://localhost:3000/orders/all)
+- `docker compose down`
 
 ### Tech Used
 - **Docker** - each service and database runs in it's own container
@@ -25,6 +26,12 @@ Ignoring for now until they fix it :/
 - Was able to connect using pgAdmin by changing port to 5431 (might be a port conflict)
 - Can't get order service to connect, even using 5431 port...
 - Wasted a lot of time being dumb. The solution? Keep port 5432 and set the DB Host to "order-service-db" 
+
+#### Creating multiple Express services
+- Generated new consumer-service in `src` directory, have to setup with Sequelize & etc each time
+
+### Reference
+- `npx express-generator --no-view <name>` to generate new express project
 
 
 

@@ -28,6 +28,30 @@ services:
     ports:
       - '3000:3000'
 
+  consumer-service-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: 
+      - '5431:5432'
+    volumes:
+      - consumer-service-db:/var/lib/postgresql/data
+
+  consumer-service:
+    build:
+      context: ./src/consumer-service
+    environment:
+      DB_SCHEMA: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_PORT: 5431
+      DB_HOST: consumer-service-db
+    depends_on:
+      - consumer-service-db
+    ports:
+      - '3001:3001'
+
   kafka:
     image: docker.io/bitnami/kafka:3.6
     ports:
@@ -50,3 +74,4 @@ volumes:
   kafka_data:
     driver: local
   order-service-db:
+  consumer-service-db:
